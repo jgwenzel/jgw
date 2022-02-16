@@ -1,0 +1,10 @@
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+
+#single space
+cat -s file.txt
+
+#replace newline that ends alphanumeric with pipe
+cat file.txt | sed '/.*[A-Za-z0-9]$/N;s/\n */\|/' > newfile.txt
+
+#replace comma and state with pipe state pipe
+cat file.txt | sed 's/, MN /\|MN|/g' > newfile.txt

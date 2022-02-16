@@ -1,0 +1,39 @@
+#!/bin/tcsh
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+##This script may be 15-20 years old and was written for a mac.
+##It may work in Linux. If so, change the shebang and ext to .sh
+##End of UPDATE
+
+#This is a simple script which will reduce the kb and dimensions of a JPEG
+#written by johnwenzel@iomass.com, 01-13-07
+
+#Change these 2 paths to match your system
+set pathtodjpeg = "/usr/local/bin/djpeg";
+set pathtocjpeg = "/usr/local/bin/cjpeg";
+
+set imagefile = `echo $1 | sed 's/"//g'`;
+set scale = $2;
+set quality = $3;
+set prefix = $4;
+
+if( "$3" == "" ) then
+	echo ""
+	echo "--USAGE--"
+	echo "reducejpeg imagefile scale quality [prefix]"
+	echo ""
+	echo "--OPTIONS--"
+	echo "scale: 1/1, 1/2, 1/4 or 1/8"
+	echo "quality: 1(lowest) to 100(highest)"
+	echo "prefix: this may include a path to a different directory, default is r_"
+	echo ""
+	exit 0
+endif
+
+if("$4" == "") then
+	set prefix = "r_";
+endif
+
+$pathtodjpeg -scale $scale -pnm "$imagefile" | $pathtocjpeg -quality $quality > "$prefix$imagefile" 
+
+exit 0
+

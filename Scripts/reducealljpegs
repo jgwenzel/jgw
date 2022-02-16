@@ -1,0 +1,49 @@
+#!/bin/tcsh
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+##This script may be 15-20 years old and was written for a mac.
+##It may work in Linux. If so, change the shebang and ext to .sh
+##End of UPDATE
+
+#This is a script which runs the script "reducejpeg" on all the jpegs in a directory
+#written by johnwenzel@iomass.com, 01-13-07
+
+#this script should exist in the same directory as reducejpeg
+#do not use a path that has spaces in the path name
+
+#set this to reflect where you put reducejpeg 
+#set pathtoreducejpeg = "/path/with/no/spaces/reducejpeg";
+set pathtoreducejpeg = "/Users/johnwenzel/scripts/reducejpeg";
+
+#you shouldn't need to change anything below
+set impath = $1;
+set scale = `echo $2 | sed 's/\//\\\//g'`; 
+set quality = $3;
+set prefix = `echo $4 | sed 's/\//\\\//g'`; 
+set pathtoreducejpeg = `echo $pathtoreducejpeg | sed 's/\//\\\//g'`;
+
+if( "$3" == "" ) then
+	echo ""
+	echo "--USAGE--"
+	echo "reducealljpegs directory scale quality [prefix]"
+	echo ""
+	echo "--OPTIONS--"
+	echo "directory: /where/your/images/are"
+	echo "scale: 1/1, 1/2, 1/4 or 1/8"
+	echo "quality: 1(lowest) to 100(highest)"
+	echo "prefix: may include path - default is r_"
+	echo ""
+	exit 0
+endif
+
+if("$prefix" == "") then
+	set prefix = "r_";
+endif
+
+if("$prefix" == "./") then
+	set prefix = "./r_";
+endif
+
+eval `ls $impath | grep "\.jpg\|\.JPG" | sed -e 's/^\(.*\)$/'$pathtoreducejpeg' "\1" '$scale' '$quality' "'$prefix'";/'`
+
+exit 0
+

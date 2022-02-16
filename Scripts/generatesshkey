@@ -1,0 +1,13 @@
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+##This script may be 15-20 years old and was written for a mac.
+##It may work in Linux. If so, change the shebang and ext to .sh
+##End of UPDATE
+
+#John Wenzel - 04-15-07
+#Here are the commands to generate a new ssh key so that ssh login does not require password from this client machine
+#This enables the use of scp and sftp scripts to transfer files securely
+#Note to self: I'm assuming that this needs to be done every time my IP address changes
+#Note to self: I've only used it once, so not sure if second command will overwrite old key - so check that
+ssh-keygen -d
+scp ~/.ssh/id_dsa.pub iomass.com:.ssh/authorized_keys2
+

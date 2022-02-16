@@ -1,0 +1,15 @@
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+##File is just to remember some sed scripts
+##End of UPDATE
+
+#a string replace of all matching files in the directory recursively
+for y in `tree -if . | grep -E "^.*(\.php|\.css)$"`; do sed "s/alert800/p_alert/g" $y > tempo; mv tempo $y; done;
+
+#rename file 3953436.__4 to 3953436_4.jpg
+for x in `ls`; do echo $x; echo $x | sed 's/\.__\([0-9]\)$/_\1.jpg/g'; done;
+
+#variation: also renames files 3953436.jpg to 3943436_0.jpg for consistent list
+for x in `ls`; do echo $x | sed 's/\.jpg$/_0.jpg/g' | sed 's/\.__\([0-9]\)$/_\1.jpg/g'; done;
+
+#fix tags: li, ul, p, br. Make them AJAX compliant like <tag />
+sed s/'<li[^<]*>'/'<li>'/g | sed s/'<ul[^<]*>'/'<ul>'/g | sed s/'<p[^<]*>'/'<p>'/g | sed s/'<br[^<]*>'/'<br>'/g

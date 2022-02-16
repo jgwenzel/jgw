@@ -1,0 +1,30 @@
+#!/bin/sh -
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+##change .disabled ext to .sh if using
+##End of UPDATE
+
+##daily download of IOmass data and backup of this machine
+##added by John Wenzel johnwenzel@iomass.com
+##added on May 2, 2007
+
+echo "STARTING JOHN WENZEL BACKUP SCRIPT: beginning daily processes in /etc/daily.local file on `date` - see file to understand any errors"
+
+/Users/johnwenzel/Documents/WEB/backup/dailywebserverbackup.tcsh
+
+echo "Starting Daily rsync backup on `date`"
+if [ -d "/Volumes/FirewireBackup" ]; then
+  for FSYS in /Users
+  do
+    /usr/bin/rsync -aE --delete $FSYS /Volumes/FirewireBackup
+    if [ $? != 0 ]; then
+      echo " ==> Error during rsync of $FSYS"
+    else
+      echo "rsync of $FYSYS OK on `date`"
+    fi
+  done
+  echo "Finished daily rsync backup at `date`"
+else
+  echo "ERROR: Target Drive /Volumes/FirewireBackup could not be found. Backup not executed."
+fi
+
+echo "FINISHED JOHN WENZEL BACKUP SCRIPT: ending daily processes in /etc/daily.local file on `date`"

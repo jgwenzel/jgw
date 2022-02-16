@@ -1,0 +1,148 @@
+#!/bin/bash
+
+##2/16/22 UPDATE- NOW johngwenzel@gmail.com
+##File is just to remember some sed scripts
+##End of UPDATE
+
+##This script would parse ebay ending soon auctions for words in a list and alert me when one was found.
+##I used it on Ubuntu Linux Client
+
+#url="http://collectibles.shop.ebay.com/Cans-US-/3915/i.html?LH_BIN=1&LH_IncludeSIF=1&_ipg=50&_sop=10&_sc=1"
+url="http://collectibles.shop.ebay.com/Cans-US-/3915/i.html?_ipg=50_sop=1&_sc=1"
+#url="http://collectibles.shop.ebay.com/Cans-US-/3915/i.html?_sop=16&_sc=1"
+#url="http://collectibles.shop.ebay.com/Pull-Tabs-/3918/i.html?_ipg=50&_sop=16&_sc=1"
+
+outfile=html/ebay_cans_us_`date +%F_%H-%M-%S`
+searchwords=(
+"Alpen Glen"
+"\bArrow 77\b"
+"\bAstro\b.{1,30}\bsteel\b"
+"\bBecker'?s\b"
+"Big Apple.{1,30}\bsteel\b"
+"Black Dallas"
+"Black Pride"
+"Bohack.{1,30}\bsteel\b"
+"Bonanza"
+"\bBrew Master\b"
+"Brewer'?s Best"
+"Cee Bee"
+"Colt Beer"
+"\bDakota\b .{0,30}\b(beer|flat)\b"
+"Dart Drug.{1,30}1\.12"
+"Dart Premium"
+"Disgo"
+"\bDorf\b"
+"Dukesa"
+"Edelbrau"
+"Fesenmeier"
+"Foodtown"
+"Fort Schuyler"
+"Franken Muth"
+"Frankenmuth"
+"Gamecock.{1,30}\b(Beer|Ale)\b"
+"Genesee.{1,30}\b(12|Twelve) Horse Ale.*\bsteel\b"
+"\b(Geyers|Geyer's)\b"
+"\bGold Medal.{1,30}\b(OI|IRTP|Flat)\b"
+"Golden Gate"
+"Grenay.{1,10}\b(Malt|ML)\b"
+"Haffenreffer.{1,10}Real.{1,10}\b(Draught|Draft)\b"
+"Hausbrau"
+"Heublein.{1,10}\bVelvet\b.{1,5}\bGlove"
+"Hi En Brau"
+"Hochberg"
+"Holburg"
+"\bHorton\b"
+"Innsbrau"
+"Iron City.{1,30}\b1974.{1,30}Football"
+"Iroquois.{1,30}Draft.{1,30}Ale"
+"Jamaica Sun"
+"Jaguar.{1,30}\bsteel\b"
+"Jax.{1,30}Draft"
+"Jenning'?s\b"
+"Jet.{1,10}\b(Malt|ML)"
+"Kaier'?s.{1,10}Ale"
+"\bLancers'?\b"
+"\bLansers'?\b"
+"Linden.{1,10}Light"
+"Little King"
+"Malt Duck"
+"Master Premium"
+"Mile High"
+"Monticello"
+"Mountain Brew"
+"Oertel'?s.{1,10}Real.{1,10}Draft"
+"Old Bohemian.{1,10}Draft"
+"Old English.{1,10}600"
+"Old German.{1,10}Draft"
+"Old Ranger"
+"Old Tavern"
+"Oldbru"
+"102.{1,10}\bDark\b"
+"\bOrbit\b"
+"\bOx Bow\b"
+"Pearl.{1,10}Dark.{1,10}Draft"
+"Piel'?s.{1,10}Draft.{1,10}Ale"
+"Pike'?s Peak.{1,30}\b(Malt|ML|Ale)\b"
+"Regal Select Draft"
+"Regal Bock"
+"Regency"
+"Renaee.{1,30}Premium"
+"Rheinbeck"
+"Rheinbrau"
+"Rheingold.{1,30}Malta"
+"\bShell's.{1,10}\bCity\b"
+"Simon Pure"
+"Ski Country"
+"\bSoul.{1,10}\b(Malt|ML)\b"
+"Spearman.{1,10}\bAle\b"
+"\bSpur\b"
+"Standard Cream Ale"
+"\bStallion\b"
+"\bState.{1,3}Fair\b"
+"Super X"
+"\bSwinger\b"
+"\bTex\b"
+"Tomahawk"
+"\bTopper Ale"
+"\bTopper Draft"
+"Thoroughbred"
+"\bThrifty.{1,30}\bblack\b"
+"Top Hat.{1,30}\bsteel\b"
+"Triple Crown.{1,30}\bsteel\b"
+"Twin'?s Lager"
+"Utica Club.{1,10}Bock"
+"Utica Club.{1,10}Extra.{1,10}Dry.{1,10}Cream.{1,10}Ale"
+"Van Dyke"
+"Waulbaum'?s"
+"Whale'?s White Ale"
+"\bWilco\b"
+"William'?s.{1,10}Purple.{1,4}Cow"
+)
+
+wget -O $outfile $url
+
+i=0
+while [ "$i" -lt ${#searchwords[*]} ]
+do
+	mycmd=`eval grep -Pic "\"${searchwords[i]}\"" $outfile | sed "s/./ &/g"`
+	myval=`echo $mycmd`
+	legible=`echo "${searchwords[i]}" | sed 's/?//g' | sed 's/{[0-9]\+,[0-9]\+}//g' | sed 's/\\\b/ /g' | sed "s/[^A-Za-z0-9' ]/ /g"`
+	echo $legible: $myval
+	if [ "$myval" -gt 0 ]
+	then
+		sleep 1
+		if [ "$myval" -gt 1 ]
+		then
+			espeak -p 30 -s 100 "John, there our atleast $myval $legible beer can auctions ending soon on ebay."
+#			espeak -p 30 -s 100 "John, there our atleast $myval $legible beer cans newly listed in buy now on ebay."
+
+		else
+			espeak -p 30 -s 100 "John, there is a $legible beer can auction ending soon on ebay."
+#			espeak -p 30 -s 100 "John, there is a $legible beer can newly listed in buy now on ebay."
+
+		fi
+		sleep 1
+	fi
+	i=$((i + 1))
+done
+
