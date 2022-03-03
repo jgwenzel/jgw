@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="2.5.0">
+    <name>Data Ticker</name>
+    <author>John Wenzel</author>
+    <version>2.5.0</version>
+    <description>Data Ticker Module by John Wenzel.</description>
+    <files>
+        <filename>mod_dataticker.xml</filename>
+        <filename module="mod_dataticker">mod_dataticker.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+		  <filename>js/dataticker.js</filename>
+    </files>
+    <params>
+    </params>
+</install>

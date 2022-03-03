@@ -1,3 +1,34 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php namespace JGW;
 
 require "Node.class.php";
@@ -26,7 +57,12 @@ require "BinaryTree.class.php";
   * liking. If you want numbers, just change to [0-9A-Za-z ]. All will be converted to
   * Uppercase.
   */
-  
+
+/***** 5 STAR GROUP *****/
+/*** 4 STAR GROUP ****/
+/***** 5 STAR MULTI LINE
+ * 
+ */
 class Huffman
 {
     /* SET CONFIG constants to your liking */
