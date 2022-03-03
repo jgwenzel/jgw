@@ -6,16 +6,16 @@ LICENSING
 As long as you leave credit to the author, John Wenzel and his email untouched, 
 you are free to use for non-commercial purposes. Commercial purposes, please contact me.
 
-Tested on PHP 7.3.31
+    Tested on PHP 7.3.31
 
 Author: John Wenzel johngwenzel@gmail.com
 https://github.com/jgwenzel/jgw
 
-Files in package
-   Huffman.class.php
-   BinaryTree.class.php
-   Node.class.php
-   huffmanencode.php (optional page with example)
+    Files in package:
+        Huffman.class.php
+        BinaryTree.class.php
+        Node.class.php
+        huffmanencode.php (optional page with example)
 
 The Huffman class is for generating Huffman Code for a given message.
 The is done most simply as:
@@ -55,7 +55,7 @@ A Huffman Code is a code "commonly used for lossless data
 compression" (Wikipedia). It was developed in 1952 by David
 Huffman at MIT. He called them "Minimum Redundancy Codes".
 
-At its root (pun intended) is a frequency-sort binary tree.
+        At its root, Huffman Codes use a frequency-sorted binary tree.
 
 For compressing messages by singular symbols, Huffman Coding 
 is optimal. Wikipedia states there are other methods
@@ -68,7 +68,7 @@ and right attributes to equal other nodes, so there is a nested
 relationship. It becomes objects within objects with objects...
 or Nodes within Nodes within Nodes...
  
-See the Nodes class to understand their simple structure.
+    See the Nodes class to understand their simple structure.
  
 I use the word Tree and Node almost interchangeably because
 a Tree is just a node where it's children (left and right) may
@@ -87,24 +87,24 @@ well. In buildTree(), we start with an array of childless Nodes,
 that I refer to as Primitive Nodes. We begin with the Node Queue
 which has one primitive Node for each Letter, each with the 
 Node::value() set. The value is the frequency of the Letter in 
-the Message. In each LOOP, we: 
+the Message. In each LOOP, we:
 
-   1) take the first 2 Nodes off the front of the Queue array
-      using array_shift().
-   2) make them a parent and attach them as children. (left and
-      right) We use createParentNode() to do so. The names of
-      the children are concatenated (A and B become AB) for the
-      parent's name and sum their values for the parent's value.
-   3) Then back inside buildTree(), we add this parent to the 
-      Node Queue in a special way so we don't have to sort the
-      array of Nodes. Using insertNode(), we loop through the queu
-      until the parent node's value is in the correct place in 
-      the ascending array, then insert it there. As we loop through,
-      each time we are taking two children off, and putting one
-      parent (with to children) on, hence the queue is shortened
-      by one each time. Eventually, the entire queue is aggregated
-      into a single tree in an array with one element. We "pop" it
-      out of the array and return just the tree. Pretty Nifty!
+    1) take the first 2 Nodes off the front of the Queue array
+       using array_shift().
+    2) make them a parent and attach them as children. (left and
+       right) We use createParentNode() to do so. The names of
+       the children are concatenated (A and B become AB) for the
+       parent's name and sum their values for the parent's value.
+    3) Then back inside buildTree(), we add this parent to the 
+       Node Queue in a special way so we don't have to sort the
+       array of Nodes. Using insertNode(), we loop through the queu
+       until the parent node's value is in the correct place in 
+       the ascending array, then insert it there. As we loop through,
+       each time we are taking two children off, and putting one
+       parent (with to children) on, hence the queue is shortened
+       by one each time. Eventually, the entire queue is aggregated
+       into a single tree in an array with one element. We "pop" it
+       out of the array and return just the tree. Pretty Nifty!
      
 About setBinaryCodes() and RECURSION
 Now we have built the tree, and no longer have an array to
