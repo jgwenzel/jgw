@@ -17,8 +17,7 @@
  * The BinaryTree works with Nodes in the Node Class and
  * is used to structure relationships between nodes.
  * 
- * A lot is written about this in the README.md file so I'll keep explanations
- * short here.
+ * A lot is written about this in the README.md.
  */
 class BinaryTree
 {
@@ -38,10 +37,19 @@ class BinaryTree
         //nothing here
     }
     
+    /**
+     * get the tree
+     * @return: $this->tree
+     */
     public function getTree(): ?Node {
         return $this->tree;
     }
 
+    /**
+     * set the tree
+     * @param: $tree: the tree of type Node
+     * @return: bool
+     */
     private function setTree( ?Node $tree ): bool {
         if(isset( $tree )) {
             $this->tree = $tree;
@@ -51,7 +59,9 @@ class BinaryTree
     }
 
     /**
-     * sets the alphabet: Letter => binary code array
+     * sets the alphabet:
+     * @param: array $alpha - Each element is [Letter => binary code]
+     * @return: void
      * The alphabet array is used to encode the message.
      * We could have used the $codes array, but it has
      * the non alphabet parent nodes that are useless
@@ -67,11 +77,17 @@ class BinaryTree
         }
     }
 
+    /**
+     * get the alphabet
+     * @return: assoc array
+     */
     public function getAlpha(): array {
         return $this->alpha;
     }
     
     /**
+     * get the codes array
+     * @return: assoc array
      * these codes are set while building the tree, so there is no setter.
      */
     public function getCodes(): array {
@@ -79,6 +95,10 @@ class BinaryTree
     }
 
     /**
+     * create parent node
+     * @param: Node $left_node
+     * @param: Node $right_node
+     * @return: Node $parent_node
      * Combine two trees/nodes by creating a parent and "pointing"
      * to left child and right child. It's value is the sum of the
      * child values. It's name is the concat of child names.
@@ -92,10 +112,11 @@ class BinaryTree
 
     /**
      * Build the Tree
+     * @param: array of Node $nodes
+     * @return: bool
      * Send an array of Primitive Nodes.
      * A Primitive Node has a name, value, null children, optional bin value
      * The array must be ordered already by value ascending.
-     * @param: array of Nodes
      */
     public function buildTree( array $nodes = null ): bool {
         $loops = 0;
@@ -112,6 +133,9 @@ class BinaryTree
     }
     /**
      * Inserts a node into the ordered array, keeping it ordered.
+     * @param: array of Node $nodes
+     * @param: Node $n
+     * @return: array Node $nodes
      * This technique saves us from having to sort the array
      * based on objects values, which wouldn't be easy.
      */
@@ -157,6 +181,10 @@ class BinaryTree
     }
 
     /**
+     * Set the binary codes for each node in tree
+     * @param: Node $tree
+     * @param: string $bin (binary code)
+     * @return: Node
      * Walk the tree recursively, setting the binary codes for each node
      * by building that code with 0s and 1s or left and right.
      */

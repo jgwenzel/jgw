@@ -50,6 +50,7 @@ class Node
         return $this->name;
     }
 
+    /* Setter */
     public function setValue( int $value ): void {
         $this->value = $value;
     }
@@ -59,6 +60,7 @@ class Node
         return $this->value;
     }
 
+    /* Setter */
     public function setLeft( ?Node $left) {
         $this->left = $left;
     }
@@ -68,6 +70,7 @@ class Node
         return $this->left;
     }
 
+    /* Setter */
     public function setRight( ?Node $right) {
         $this->right = $right;
     }
@@ -76,7 +79,8 @@ class Node
     public function right() {
         return $this->right;
     }
-
+    
+   /* Setter */
     public function setBin( ?string $bin ): void {
         $this->bin = $bin;
     }
