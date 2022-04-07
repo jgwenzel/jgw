@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Gtag/etc/adminhtml/menu.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <!-- adding Gtag Enable/Disable to DoneLogic Core menu -->
+    <menu>
+        <add 
+            id="DoneLogic_Gtag::gtag_configuration" 
+            title="Gtag Config" 
+            module="DoneLogic_Gtag" 
+            sortOrder="50" 
+            parent="DoneLogic_Core::core_menu" 
+            action="adminhtml/system_config/edit/section/gtag" 
+            resource="DoneLogic_Gtag::gtag_configuration"/>
+    </menu>
+</config>

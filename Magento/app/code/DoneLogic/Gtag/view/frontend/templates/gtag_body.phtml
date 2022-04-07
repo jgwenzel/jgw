@@ -1,0 +1,9 @@
+<?php
+/**
+ * DoneLogic/Gtag/view/frontend/templates/gtag_body.phtml
+ * @author John Wenzel johngwenzel@gmail.com
+ * Gets Gtag Body Snippet from database via get() in GtagBody class
+*/
+$blockObj= $block->getLayout()->createBlock('DoneLogic\Gtag\Block\GtagBody');
+echo "\n" . $blockObj->get() . "\n";
+?>

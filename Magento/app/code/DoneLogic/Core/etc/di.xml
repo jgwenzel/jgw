@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Core/etc/di.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="donelogic_core_record_data_source" xsi:type="string">DoneLogic\Core\Model\ResourceModel\Records\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DoneLogic\Core\Model\ResourceModel\Records\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">donelogic_core</argument>
+            <argument name="resourceModel" xsi:type="string">DoneLogic\Core\Model\ResourceModel\Records</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,9 @@
+<?php
+/**
+ * DoneLogic/Gtag/view/frontend/templates/gtag_head.phtml
+ * @author John Wenzel johngwenzel@gmail.com
+ * Gets Gtag Head Snippet from database via get() in GtagHead class
+*/
+$blockObj= $block->getLayout()->createBlock('DoneLogic\Gtag\Block\GtagHead');
+echo "\n" . $blockObj->get() . "\n";
+?>

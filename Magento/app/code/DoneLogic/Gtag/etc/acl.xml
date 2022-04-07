@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Gtag/etc/acl.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="DoneLogic_Gtag::gtag" title="DoneLogic Gtag" sortOrder="51">
+                    <resource id="DoneLogic_Gtag::gtag_configuration" title="DoneLogic Gtag Configuration" sortOrder="99" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="DoneLogic_Gtag::gtag_config" title="DoneLogic Gtag Config"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

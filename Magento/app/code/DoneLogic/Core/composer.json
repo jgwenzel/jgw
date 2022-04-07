@@ -1,0 +1,28 @@
+{
+    "name": "donelogic/core",
+    "description": "DoneLogic Core Component (Database for other DL modules)",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "John Wenzel",
+            "email": "johngwenzel@gmail.com",
+            "homepage": "https://donelogic.com"
+        }
+    ],
+    "version": "1.0.2",
+    "require": {
+        "php": "~7.3.0||~7.4.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    },
+    "psr-4": {
+        "DoneLogic\\Core\\": ""
+    }
+}

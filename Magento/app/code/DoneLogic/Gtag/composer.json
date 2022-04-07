@@ -1,0 +1,29 @@
+{
+    "name": "donelogic/gtag",
+    "description": "DoneLogic Gtag Module (requires donelogic/core)",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "John Wenzel",
+            "email": "johngwenzel@gmail.com",
+            "homepage": "https://donelogic.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.2",
+    "require": {
+        "php": "~7.3.0||~7.4.0",
+        "donelogic/core": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

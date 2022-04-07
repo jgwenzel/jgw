@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Core/etc/adminhtml/menu.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="DoneLogic_Core::core_menu" 
+            title="DoneLogic" 
+            module="DoneLogic_Core" 
+            sortOrder="75"
+            resource="DoneLogic_Core::core" />
+        <add id="DoneLogic_Core::records_menu" 
+            title="Core Data" 
+            module="DoneLogic_Core" 
+            sortOrder="20" 
+            parent="DoneLogic_Core::core_menu" 
+            action="core/records/index" 
+            resource="DoneLogic_Core::records" />
+        <add id="DoneLogic_Core::core_configuration" 
+            title="Core Config" 
+            module="DoneLogic_Core" 
+            sortOrder="30" 
+            parent="DoneLogic_Core::core_menu" 
+            action="adminhtml/system_config/edit/section/core" 
+            resource="DoneLogic_Core::core_configuration"/>
+    </menu>
+</config>

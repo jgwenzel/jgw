@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Gtag/etc/adminhtml/system.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gtag" translate="label" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Gtag</label>
+            <tab>donelogic</tab>
+            <resource>DoneLogic_Gtag::gtag_configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Gtag Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <comment>Disabling module disables Gtag snippets being rendered in the head and body.
+                        View DoneLogic Core Data to manage values set for Gtags.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
