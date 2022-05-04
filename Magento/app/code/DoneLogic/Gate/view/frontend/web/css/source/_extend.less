@@ -1,0 +1,245 @@
+//
+//  Color variables
+//  _____________________________________________
+@color-yeller: #ffc800;
+@color-yeller-lighten: lighten(@color-yeller, 30%);
+@color-yeller-darken: darken(@color-yeller, 30%);
+@color-yeller-orange: #ffbb00;
+@color-yeller-oranger: #ff9900;
+
+.page-wrapper {
+
+    //fix: bootstrap was making navigation text tiny
+    .nav-sections {
+        .nav-sections-items {
+            .nav-sections-item-content {
+                .navigation {
+                    z-index:9999;
+                    ul {
+                        li {
+                            font-size:1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    main.page-main {
+        #vendornav {
+            ul {
+                list-style-type:none;
+                font-size:1.5rem;
+                margin:0;
+                padding:0;
+
+                li {
+                    margin:.25rem;
+                    margin-left:.5rem;
+                    font-weight:bold;
+                    color:#444;
+                    padding: .5rem;
+                    border-bottom: 1px solid #ccc;
+                    &:last-child {
+                        border-bottom: none;                        
+                    }
+
+                    a {
+                        font-weight:bold;
+                        color:#666;
+                        text-decoration:none;
+                        &:hover{
+                            color:black;
+                        }
+
+                        span {
+                            color:orangered;
+                        }
+                    }
+                }
+                li.service.link:hover, li.region.link:hover, li.country.link:hover {
+                    background-color:@color-yeller;
+                    border:1px solid black;
+                    border-radius: 1rem;
+                    box-shadow: .25rem .5rem .5rem gray;                   
+                }
+                li.service.active, li.region.active, li.country.active {
+                    background-color:@color-yeller;
+                    border:1px solid black;
+                    border-radius: 1rem;
+                    box-shadow: .25rem .5rem .5rem gray;
+                }
+                
+            }
+        }
+        #gate-form {
+            font-size:150%;
+            .required {
+                label.label:after {
+                    content:" *";
+                    color: red;
+                }
+            }
+            .field {
+                margin: 2rem 1rem 2rem 1rem;
+                label {
+                    font-size:1.5rem;
+                    font-weight:bold;
+                }
+                input, textarea {
+                    background-color:#eee;
+                    border: 1px solid #666;
+                    border-radius: 8px;
+                    &:focus {
+                        background-color:white;
+                        border: 2px solid black;
+                    }
+                }
+
+                select {
+                    background-color:#eee;
+                    border: 1px solid #666;
+                    border-radius: 8px;
+                    &:focus {
+                        background-color:white;
+                        border:2px solid black;
+                    }
+                    option.selected {
+                        background-color:#ccc;
+                    }
+                }
+            }
+        }
+        .big {
+            color: black;
+            font-size:2rem;
+            font-weight:bold;
+            a {
+                text-decoration:none;
+                &:hover {
+                    text-decoration:underline;   
+                }
+            }
+        }
+
+        .intro .row {
+            h2 {
+                font-size:2rem;
+                font-weight:bold;
+            }
+            p {
+                font-size:1.5rem;
+            }
+            .intro {
+                p.headline {
+                    font-size:2.5rem;
+                    font-style:italic;
+                }
+            }
+            .services {
+                ul li {
+                    font-size:1.5rem;
+                    line-height:2rem;
+                }
+            }
+        }
+
+        .listingtop .row {
+            .logo {
+                padding:1rem;
+            }
+
+            .topdescription {
+                padding:1rem;
+
+                p.description {
+                    color:black;
+                    font-size:1.5rem;
+                }
+            }
+        }
+
+        .listing .row {
+            margin: 2rem 0 2rem 0; 
+            border: .25rem solid #ccc;
+
+            .logo {
+                padding:1rem;
+            }
+
+            .main {
+                background-color:#eee;
+                padding:1rem;
+
+                h2 {
+                    font-size:2.5rem;
+                    font-weight:bolder;
+                }
+
+                p {
+                    font-size:1.5rem;
+                }
+
+                .icon {
+                    font-size:2rem;
+                    font-weight:bold;
+                }
+
+                .link {
+                    font-size:1.5rem;
+                    font-weight:bold;
+                    i {
+                        font-size:2rem;
+                        color: black;
+                    }   
+
+                    a {
+                        color: black;
+                        text-decoration:none;
+                        &:hover {
+                            color:black;
+                            text-decoration:underline;   
+                        }
+                    }
+                }
+            }
+
+            .services {
+                padding:2rem;
+                background-color:black;
+                button.btn-lg {
+                    font-size:1.5rem;
+                    padding: 1rem 2rem;
+                    border-radius:1rem;
+                }
+            }
+        }
+
+        .container.content {
+            font-size:150%;
+            margin: 2rem 0 2rem 0; 
+            border: .25rem solid #ccc;
+        }
+
+        .pager {
+            font-size:1.5rem;
+            font-weight:bold;
+            color: #666;
+            a {
+                color: black;
+                text-decoration:none;
+                &:hover {
+                    color:darkred;
+                    text-decoration:underline;
+                }
+            }
+        }
+    }
+
+    .page-footer {
+        .footer.content {
+             ul.links {
+                line-height:1rem;
+            }
+        }
+    }
+}

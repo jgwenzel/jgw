@@ -37,10 +37,4 @@ class Records extends Action
     {
         //this class is so far only extended, so does not execute anything itself.
     }
- 
-    protected function _isAllowed()
-    {
-        //placeholder function
-        return true;
-    }
 }

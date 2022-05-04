@@ -1,0 +1,27 @@
+<?php
+$columns = array(
+    'vendor_id',
+    'customer_id',
+    'category',
+    'services',
+    'service_regions',
+    'company',
+    'address_line_1',
+    'address_line_2',
+    'city',
+    'country_code',
+    'region_name',
+    'postcode',
+    'phone',
+    'show_phone',
+    'email',
+    'show_email',
+    'website',
+    'show_website',
+    'description',
+    'content',
+    'image_url',
+    'active',
+    'created_at',
+    'updated_at'
+);

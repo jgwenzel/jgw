@@ -1,6 +1,6 @@
 {
-    "name": "donelogic/gtag",
-    "description": "DoneLogic Gtag Module (requires donelogic/core)",
+    "name": "donelogic/gate",
+    "description": "DoneLogic Gate Component",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -13,10 +13,9 @@
             "homepage": "https://donelogic.com"
         }
     ],
-    "version": "1.0.2",
+    "version": "1.0.0",
     "require": {
-        "php": "~7.3.0||~7.4.0",
-        "donelogic/core": "*"
+        "php": "~7.3.0||~7.4.0"
     },
     "autoload": {
         "files": [
@@ -24,6 +23,6 @@
         ]
     },
     "psr-4": {
-        "DoneLogic\\Core\\": ""
+        "DoneLogic\\Gate\\": ""
     }
 }

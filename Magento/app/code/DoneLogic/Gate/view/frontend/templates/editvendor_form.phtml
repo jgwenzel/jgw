@@ -1,0 +1,254 @@
+<?php
+    $data = $this->getFormData();
+    //for AJAX
+    $region_name = $data['region_name'];
+
+    //for AJAX
+    $service_regions = $data['service_regions'];
+    if(is_array($service_regions)) {
+        $service_regions = implode(",",$service_regions);
+    }
+    $service_regions = urlencode($service_regions);
+    $country_options = $this->getCountryOptions( $data['country_code']);
+    /*
+    if(is_array($data['services'])) {
+        $services = $data['services'];
+    } else {
+        $services = explode(",",$data['services']);
+    }
+    */
+    //for Form
+    $services_options = $this->getServicesOptions( $data['services'] );
+
+    if(isset($data['vendor_id'])) {
+        $vendor_id_field = '<input type="hidden" name="vendor_id" value="'. $data['vendor_id'] . '" />';
+        $title = 'Edit Form';
+        $submit_text = 'Update';
+        $image = '';
+        if(!empty($data['image_url'])) {
+            $image = '<img src="' . $this->getMediaUrl($data['image_url']) . '" style="width:80px; height:auto;" /><br />';
+            $image_text = 'Upload to Replace Current Image';
+        }
+    }
+    else {
+        $vendor_id_field = '';
+        $title = 'Sign Up Form';
+        $submit_text = 'Sign Up';
+        $image = '';
+        $image_text = 'Upload Logo or Image';
+    }
+?>
+<form name="addData" method="post" id="addData" class="form" 
+        enctype="multipart/form-data" 
+        action="<?= $this->getFormAction(); ?>"
+        data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+        data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+    <?= $vendor_id_field ?>
+    <input type="hidden" name="customer_id" value="<?= $this->getCustomerId() ?>" />
+    <div id="gate-form">
+        <div class="row">
+            <div class="col-md-12">
+                <legend class="legend"><span><?= $block->escapeHtml(__( $title )) ?></span></legend>
+            </div>
+        </div>
+        <div class="row">
+            <div class="fields col-md-6">
+                <div class="field name required">
+                    <label class="label" for="company"><span><?= $block->escapeHtmlAttr(__('Company')) ?></span></label>
+                    <div class="control">
+                        <input name="company" id="company" title="Company" value="<?= $block->escapeHtmlAttr($data['company']) ?>" class="input-text" type="text"
+                                data-validate='{"required":true} /'>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="address_line_1"><span><?= $block->escapeHtmlAttr(__('Address Line 1')) ?></span></label>
+                    <div class="control">
+                        <input name="address_line_1" id="address_line_1" title="Address Line 1" value="<?= $block->escapeHtmlAttr($data['address_line_1']) ?>" class="input-text" type="text"
+                                data-validate='{"required":true}' />
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="address_line_2"><span><?= $block->escapeHtmlAttr(__('Address Line 2')) ?></span></label>
+                    <div class="control">
+                        <input name="address_line_2" id="address_line_2" title="Address Line 2" value="<?= $block->escapeHtmlAttr($data['address_line_2']) ?>" class="input-text" type="text" />
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="city"><span><?= $block->escapeHtmlAttr(__('City')) ?></span></label>
+                    <div class="control">
+                        <input name="city" id="city" title="City" value="<?= $block->escapeHtmlAttr($data['city']) ?>" class="input-text" type="text"
+                                data-validate='{"required":true, "validate-alphanum-with-spaces":true}' />
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="country_code"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
+                    <div class="control">
+                        <select name="country_code" id="country_code" data-validate='{"required":true}'>
+                            <?= $country_options ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="region_name"><span><?= $block->escapeHtml(__('Region')) ?></span></label>
+                    <div class="control">
+                        <select name="region_name" id="region_name" data-validate='{"required":true}'>
+                        </select>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="postcode"><span><?= $block->escapeHtmlAttr(__('Zip/Postal Code')) ?></span></label>
+                    <div class="control">
+                        <input name="postcode" id="postcode" title="Zip/Postal Code" value="<?= $block->escapeHtmlAttr($data['postcode']) ?>" class="input-text" type="text"
+                                data-validate='{"required":true,"minlength":5}' />
+                    </div>
+                </div>
+            </div>
+            <div class="fields col-md-6">
+                <div class="field name">
+                    <label class="label" for="services"><span><?= $block->escapeHtml(__('Services You Provide')) ?></span></label>
+                    <div class="control">
+                        <select name="services[]" id="services" size="10" multiple>
+                            <?= $services_options ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="service_regions"><span><?= $block->escapeHtml(__('Service Regions (limit 10)')) ?></span></label>
+                    <div class="control">
+                        <select name="service_regions[]" id="service_regions" size="12" multiple>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="fields col-md-6">
+                <div class="field name required">
+                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <div class="control">
+                        <input type="email" name="email" id="email" autocomplete="off" value="<?= $block->escapeHtmlAttr($data['email']) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate='{"required":true,"validate-email":true, "remote":"<?= $this->getUrl("gate/ajax/uniqueemail", ["_secure" => false]) ?>"}' />
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="show_email"><span><?= $block->escapeHtml(__('Show Email?')) ?></span></label>
+                    <div class="control">
+                        <select name="show_email" id="show_email">
+                            <option value="0" <?= intval($data['show_email']) == 0 ? 'selected':''; ?>>No, Hide Email</option>
+                            <option value="1" <?= intval($data['show_email']) == 1 ? 'selected':''; ?>>Yes, Show on Listing</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="phone"><span><?= $block->escapeHtml(__('Phone')) ?></span></label>
+                    <div class="control">
+                        <input name="phone" id="phone" title="Phone" value="<?= $block->escapeHtmlAttr($data['phone']) ?>" class="input-text"
+                                type="text" data-validate='{"required":true,"minlength":10}' />
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="show_phone"><span><?= $block->escapeHtml(__('Show Phone Number?')) ?></span></label>
+                    <div class="control">
+                        <select name="show_phone" id="show_phone">
+                            <option value="0" <?= intval($data['show_phone']) == 0 ? 'selected':''; ?>>No, Hide Phone Number</option>
+                            <option value="1" <?= intval($data['show_phone']) == 1 ? 'selected':''; ?>>Yes, Show on Listing</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="website"><span><?= $block->escapeHtml(__('Website (or link)')) ?></span></label>
+                    <div class="control">
+                        <input name="website" id="website" title="Website or Link" value="<?= $block->escapeHtmlAttr($data['website']) ?>" class="input-text"
+                                type="text" data-validate='{"validate-url":true}' />
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="show_website"><span><?= $block->escapeHtml(__('Show Website?')) ?></span></label>
+                    <div class="control">
+                        <select name="show_website" id="show_website">
+                            <option value="0" <?= intval($data['show_website']) == 0 ? 'selected':''; ?>>No, Hide Website</option>
+                            <option value="1" <?= intval($data['show_website']) == 1 ? 'selected':''; ?>>Yes, Show on Listing</option> 
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="fields col-md-6">
+                <div class="field name">
+                    <label class="label" for="description"><span><?= $block->escapeHtmlAttr(__('Describe Your Company and Services')) ?></span></label>
+                    <div class="control">
+                        <textarea name="description" id="description" title="Description" rows="12" cols="50"><?= $block->escapeHtml($data['description']) ?></textarea>
+                    </div>
+                </div>
+                <div class="field name">
+                    <?= $image ?>
+                    <label class="label" for="image_url"><span><?= $block->escapeHtml(__( $image_text )) ?></span></label>
+                    <div class="control">
+                        <input type="file" id="image_url" name="image_url" accept="image/png, image/jpeg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action submit primary" title="Submit"><span><?= $block->escapeHtml(__( $submit_text )) ?></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+</form>
+<script>
+require(['jquery', 'jquery/ui'],function($) {
+
+        // on intial check whether country code exists or not 
+            
+        $(window).on('load', function() {
+
+        var country_code = $('#country_code').val();
+        //var region_name = $('#region_name').val();
+        var region_name = '<?= $region_name ?>';
+
+        var service_regions = '<?= $service_regions ?>';
+
+            $.ajax({
+                    url : '<?= $this->getUrl('gate/ajax/regionselect') ?>country_code/' + $('#country_code').val()+'/region_name/'+region_name+'/service_regions/'+service_regions,
+                    type: 'get',
+                    dataType: 'json',
+                    showLoader:true,
+                    success: function(data){
+                        $('#region_name').empty();
+                        $('#region_name').append(data.htmldata.select);
+                        $('#service_regions').empty();
+                        $('#service_regions').append(data.htmldata.multiselect);
+                    }
+                });
+        });   
+
+        // onchange country this function called 
+        $(document).on('change', '#country_code', function(event){
+
+        var country_code = $('#country_code').val();
+        var region_name = $('#region_name').val();
+        
+        //alert(country_code);
+
+        $.ajax({
+                url : '<?= $this->getUrl('gate/ajax/regionselect') ?>country_code/' + $('#country_code').val(),
+                type: 'get',
+                dataType: 'json',
+                showLoader:true,
+                success: function(data){
+                    $('#region_name').empty();
+                    $('#region_name').append(data.htmldata.select);
+                    $('#service_regions').empty();
+                    $('#service_regions').append(data.htmldata.multiselect);
+                }
+            });
+                
+        })
+    }
+
+);
+</script>

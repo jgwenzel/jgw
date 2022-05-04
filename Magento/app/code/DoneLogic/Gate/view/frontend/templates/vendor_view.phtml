@@ -1,0 +1,80 @@
+<?php
+    $data = $this->getVendor();
+    if(!$data) {
+        $data = $this->getDefaultVendor();
+        echo '<h2 style="color:red">Message: Vendor is not active or does not exist. Showing Default Vendor.</h2>';
+    }
+    $description = $data->getDescription();
+    $arr = explode("\n", $description);
+    $description = '';
+    foreach($arr as $paragraph) {
+        if(empty($paragraph) || strlen($paragraph) < 2) {
+            continue;
+        }
+        $description .= '<p class="description">' . $paragraph . '</p>';
+    }
+
+    $region = $data->getRegionName();
+    if($data->getCategory() == 'ADS') {
+        $regions_served = $this->getParam('region');
+        if(empty($regions_served)) {
+            $regions_served = $this->getParam('country');
+        } else {
+            $region = $regions_served;
+        }
+    } else {
+        $regions_served = str_replace(',',', ',$data->getServiceRegions());
+    }
+
+?>
+<div class="container">
+<div class="col-sm-12">
+    <span class="big">
+    <i class="bi-arrow-left"></i> <a href="/gate/vendors/view/<?= $this->getBackParams() ?>">Services Directory</a></span><br />
+    <?= $this->getEditLink() ?>
+</div>
+</div>
+<hr />
+<div class="container listingtop">
+    <div class="row">
+        <div class="col-sm-4 logo">
+            <img class="img-fluid" src="<?= $this->getMediaUrl($data->getImageUrl()) ?>" alt="<?= htmlspecialchars($data->getCompany()) ?>" />
+        </div>
+        <div class="col-sm-8 topdescription">
+            <?= $description ?>
+        </div>
+    </div>
+</div>
+<div class="container listing">
+<div class="row">
+    <div class="col-sm-6 main">
+        <h2><?= $data->getCompany() ?></h2>
+        <br />
+        <span class="icon"><i class="bi-truck"></i> Regions Served: <?= $regions_served ?></span><br />
+        <br />
+        <span class="icon">
+            <i class="bi-telephone"></i> <?= ($data->getShowPhone() ? $data->getPhone() : "[ phone not provided or hidden ]") ?>
+        </span><br />
+        <span class="icon">
+            <i class="bi-link-45deg"></i> <?= ($data->getShowWebsite() ? '<a href="' . $data->getWebsite() . '" alt="' . $data->getCompany() . '" />' . $data->getWebsite() . '</a>' : '[ website not provided or hidden ]') ?>
+        </span><br />
+        <span class="icon">
+            <i class="bi-mailbox"></i> <?= ($data->getShowEmail() ? $data->getEmail() : "[ email not provided or hidden ]") ?>
+        </span><br />
+        <br />
+        <br />
+        <h3>Address:</h3>
+        <h3><?php echo $data->getAddressLine1(); ?></h3>
+        <?= empty($data->getAddressLine2()) ? '': '<h3>' . $data->getAddressLine2() . '</h3>'; ?>
+        <h3><?= $data->getCity() . ', ' . $region . ' ' . $data->getPostcode() ?></h3>
+        <h3><?= $this->getCountryName( $data->getCountryCode() ) ?></h3>
+    </div>
+    <div class="col-sm-6 services">
+        <div class="d-grid gap-4 mx-auto">
+        <?php foreach( explode(",",$data->getServices()) as $service): ?>
+            <button type="button" class="btn btn-warning btn-lg"><?= $service ?></button>
+        <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+</div>

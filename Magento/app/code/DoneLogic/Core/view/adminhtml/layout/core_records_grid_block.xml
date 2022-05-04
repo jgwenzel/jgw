@@ -6,7 +6,7 @@
         <referenceBlock name="core_records_grid_block.grid.container">
             <block class="Magento\Backend\Block\Widget\Grid" name="core_records_grid_block.grid" as="grid">
                 <arguments>
-                    <argument name="record_id" xsi:type="string">record_id</argument>
+                    <argument name="id" xsi:type="string">record_id</argument>
                     <argument name="dataSource" xsi:type="object">DoneLogic\Core\Model\ResourceModel\Records\Collection</argument>
                     <argument name="default_sort" xsi:type="string">record_id</argument>
                     <argument name="default_dir" xsi:type="string">ASC</argument>

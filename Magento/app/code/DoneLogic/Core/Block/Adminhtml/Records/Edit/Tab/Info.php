@@ -12,7 +12,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\Data\FormFactory;
 use Magento\Cms\Model\Wysiwyg\Config;
- 
+
 class Info extends Generic implements TabInterface
 {
     /**
@@ -20,22 +20,25 @@ class Info extends Generic implements TabInterface
      */
     protected $_wysiwygConfig;
  
+    protected $_coreRegistry;
+
     /**
      * @param Context $context
-     * @param Registry $registry
+     * @param Registry $coreRegistry
      * @param FormFactory $formFactory
      * @param Config $wysiwygConfig
      * @param array $data
      */
     public function __construct(
         Context $context,
-        Registry $registry,
+        Registry $coreRegistry,
         FormFactory $formFactory,
         Config $wysiwygConfig,
         array $data = []
     ) {
         $this->_wysiwygConfig = $wysiwygConfig;
-        parent::__construct($context, $registry, $formFactory, $data);
+        $this->_coreRegistry = $coreRegistry;
+        parent::__construct($context, $coreRegistry, $formFactory, $data);
     }
  
     /**

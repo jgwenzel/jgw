@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="DoneLogic\Gate\Block\Index\CustomerVendor"
+            name="customer_account_dashboard_vendor"
+            template="DoneLogic_Gate::customer_dashboard/vendor.phtml"
+            after="-"
+            cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,100 @@
+<?php
+    $vendors = $this->getFilteredVendors();
+    if($this->isLoggedIn()) {
+        $form_link = '<p>Click on the following link to get started. It only takes a few minutes to create a great listing.</p>
+        <p><a href="/gate/vendors/editvendor">Create or Edit Your Service Directory Listing</a></p>';
+    } else {
+        $form_link = '<p>Simply Login or create an account (above right) and return here and a link to the Service Directory Listing form will appear here.</p>';
+    }
+$intro = '
+<div class="container intro">
+    <div class="row">
+        <div class="col-sm-6 intro">
+            <h2>Looking for Installation Services?</h2>
+            <p>Use the navigation on the left to select country, region and service.</p>
+        </p>
+        </div>
+        <div class="col-sm-6 services">
+            <h2>Contractors</h2>
+            <p><strong>Get your listing posted here for free!</strong></p>
+            ' . $form_link . '
+        </div>
+    </div>
+</div>
+';
+if(!$this->isFiltered()) {
+    //only show intro on front unfiltered page
+    echo $intro;
+}
+$pager = $this->getPager();
+echo $pager;
+?>
+
+<?php foreach($vendors as $key => $data): ?>
+<?php
+$link = '/gate/vendors/vendor/vendor_id/' . $data->getVendorId() . '/' . $this->getBackParams() . 'company/' . str_replace("+","-",urlencode($data->getCompany()));
+
+$region = $data->getRegionName();
+if($data->getCategory() == 'ADS') {
+    $regions_served = $this->getParam('region');
+    if(empty($regions_served)) {
+        $regions_served = $this->getParam('country');
+    } else {
+        $region = $regions_served;
+    }
+    $city = '';
+} else {
+    $regions_served = str_replace(',',', ',$data->getServiceRegions());
+    $city = $data->getCity() . ", ";
+}
+
+?>
+<div class="container listing">
+<div class="row">
+    <div class="col-sm-3 logo">
+    <a href="<?= $link ?>">
+            <img class="img-fluid" src="<?= $this->getMediaUrl($data->getImageUrl()) ?>" alt="<?= htmlspecialchars($data->getCompany()) ?>" />
+        </a>
+    </div>
+    <div class="col-sm-5 main">
+        <h2><?= $data->getCompany() ?></h2>
+        <span class="icon"><i class="bi-globe"></i> <?= $city . $region . ', ' . $this->getCountryName( $data->getCountryCode() ) ?></span><br />
+        <span class="icon"><i class="bi-truck"></i> Regions Served: <?= $regions_served ?></span><br />
+        <br />
+        <span class="link">
+            <i class="bi-telephone-fill"></i>
+            <a href="<?= $link ?>"> Contact Info</a>
+        </span><br />
+        <span class="link">
+            <i class="bi-people-fill"></i>
+            <a href="<?= $link ?>"> Learn More About <?= $data->getCompany() ?>
+            </a>
+        </span>
+    </div>
+    <div class="col-sm-4 services">
+        <div class="d-grid gap-4 mx-auto">
+        <?php 
+        //Only show 2 services on this page
+        $full_services = explode(',',$data->getServices());
+        $services = [];
+        $max = count($full_services);
+        if($max > 2) {
+            $max = 3;
+        }
+        for($i=0;$i<$max;$i++) {
+            if($i==2) {
+                $services[$i] = 'And More...';
+            } else {
+                $services[$i] = $full_services[$i];
+            }
+        }
+        ?>
+        <?php foreach( $services as $service): ?>
+            <button type="button" class="btn btn-warning btn-lg"><?= $service ?></button>
+        <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+</div>    
+<?php endforeach; ?>
+<?= $pager ?>

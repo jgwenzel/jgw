@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Gate/etc/adminhtml/menu.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DoneLogic_Gate::vendors_menu" 
+            title="Gate Vendors" 
+            module="DoneLogic_Gate" 
+            sortOrder="20" 
+            parent="DoneLogic_Core::core_menu" 
+            action="gate/vendors/index" 
+            resource="DoneLogic_Gate::vendors" />
+        <add id="DoneLogic_Gate::gate_configuration" 
+            title="Gate Config" 
+            module="DoneLogic_Gate" 
+            sortOrder="30" 
+            parent="DoneLogic_Core::core_menu" 
+            action="adminhtml/system_config/edit/section/gate" 
+            resource="DoneLogic_Gate::gate_configuration"/>
+    </menu>
+</config>

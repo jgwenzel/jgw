@@ -1,0 +1,30 @@
+<?php
+/**
+ * Author: johngwenzel@gmail.com
+ */
+
+?>
+<div class="block">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Services Directory')) ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="box">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Your Directory Listing')) ?></span>
+            </strong>
+            <div class="box-content">
+                <?= $this->getDashboardContent() ?>
+            </div>
+        </div>
+        <div class="box">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Manage Directory Listing')) ?></span>
+            </strong>
+            <div class="box-content">
+                <?= $this->getCustomerVendorEditLink() ?>
+                <?= $this->getCustomerVendorViewLink() ?>
+            </div>
+        </div>
+    </div>
+</div>

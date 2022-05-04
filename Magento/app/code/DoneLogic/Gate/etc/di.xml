@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Gate/etc/di.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="donelogic_gate_vendor_data_source" xsi:type="string">DoneLogic\Gate\Model\ResourceModel\Vendors\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DoneLogic\Gate\Model\ResourceModel\Vendors\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">donelogic_gate</argument>
+            <argument name="resourceModel" xsi:type="string">DoneLogic\Gate\Model\ResourceModel\Vendors</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- DoneLogic/Gate/etc/config.xml -->
+<!-- @author John Wenzel johngwenzel@gmail.com -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gate>
+            <general>
+                <enable>1</enable>
+            </general>
+        </gate>
+    </default>
+</config>
