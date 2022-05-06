@@ -1,4 +1,5 @@
 <?php
+    $this->runTriggers();
     $data = $this->getVendor();
     if(!$data) {
         $data = $this->getDefaultVendor();

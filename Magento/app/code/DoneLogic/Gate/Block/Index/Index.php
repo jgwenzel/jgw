@@ -13,6 +13,7 @@ use Magento\Framework\Message\ManagerInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\UrlInterface;
+use DoneLogic\SendEmail\Helper\Data as MailHelper;
 use Magento\Framework\View\Element\Template;
 
 class Index extends Template 
@@ -26,6 +27,7 @@ class Index extends Template
     protected $_customerSession;
     protected $_storeManager;
     protected $_vendor;
+    protected $_mailHelper;
 
     public function __construct(
         Context $context,
@@ -37,6 +39,7 @@ class Index extends Template
         ManagerInterface $messageManager,
         CustomerSession $customerSession,
         StoreManagerInterface $storeManager,
+        MailHelper $mailHelper,
         $data = []
     ) 
     {
@@ -50,6 +53,7 @@ class Index extends Template
         $this->_messageManager = $messageManager;
         $this->_customerSession = $customerSession;
         $this->_storeManager = $storeManager;
+        $this->_mailHelper = $mailHelper;
     }
 
     public function _prepareLayout() {
@@ -240,5 +244,24 @@ class Index extends Template
      */
     public function getParam( $param ) {
         return $this->_request->getParam( $param );
+    }
+
+    /**
+     * @return void
+     */
+    public function runTriggers() {
+        if($this->isLoggedIn()) {
+            $result = $this->_request->getParam('submit');
+            if($result == 'yes') {
+                $name = $this->_request->getParam('name');
+                if($name) {
+                    $company = urldecode($name);
+                    $message = 'Good News! ' . $this->escapeHtml($company) . ' has added or updated a Service Directory Listing.';
+                } else {
+                    $message = 'A vendor has added or updated a Service Directory Listing. Company name was not set in Block/Vendors::runTriggers().';
+                }
+                $this->_mailHelper->sendMail( $message, 'admin');
+            }
+        }
     }
 }

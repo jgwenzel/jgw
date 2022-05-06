@@ -143,13 +143,13 @@ class Save extends Action
                 if(isset($formData['vendor_id'])) {
                     $this->_messageManager->addSuccess(__('Good Job. Your listing has been updated.'));
                     // Go to Vendor Page View
-                    $redirect = 'gate/vendors/vendor/vendor_id/' . $formData['vendor_id'] . '/' . urlencode($formData['company']) . '/';
+                    $redirect = 'gate/vendors/vendor/vendor_id/' . $formData['vendor_id'] . '/submit/yes/name/' . urlencode($formData['company']) . '/';
                     $this->_redirect( $redirect );
                 }
                 else {
                     $this->_messageManager->addSuccess(__('Good Job. Your company has been submitted to the Services Directory. We will email you upon approval of submission. Thank you.'));
                     // Go to Services Directory
-                    $this->_redirect('*/*/view');
+                    $this->_redirect('*/*/view/submit/yes/name/' . urlencode($formData['company']) . '/');
                 }
                 return;
             } catch (\Exception $e) {

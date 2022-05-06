@@ -29,7 +29,7 @@ class CustomerVendor extends Index
         }
 
         $content = '<h2>Listing At-a-Glance</h2>
-            <img src="'. $this->getMediaUrl($data->getImageUrl()) . '" alt="' . $this->escapeHtmlAttr($vendor->getCompany()) . '" style="width:100px; height:auto;" />
+            <img src="'. $this->getMediaUrl($vendor->getImageUrl()) . '" alt="' . $this->escapeHtmlAttr($vendor->getCompany()) . '" style="width:100px; height:auto;" />
             <h3>' . $this->escapeHtml($vendor->getCompany()) . '</h3>
             <span>Phone: ' . $this->escapeHtml($vendor->getPhone()) . ' (' . ($vendor->getShowPhone() == 1? 'public':'private') . ')</span><br />
             <span>Website: ' . $this->escapeHtml($vendor->getWebsite()) . ' (' . ($vendor->getShowWebsite() == 1? 'public':'private') . ')</span><br />
