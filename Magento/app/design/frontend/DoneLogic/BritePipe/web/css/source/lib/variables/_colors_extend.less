@@ -1,0 +1,47 @@
+//
+//  Color variables
+//  _____________________________________________
+@color-yeller: #ffc800;
+@color-yeller-lighten: lighten(@color-yeller, 30%);
+@color-yeller-darken: darken(@color-yeller, 30%);
+@color-yeller-orange: #ffbb00;
+@color-yeller-oranger: #ff9900;
+
+//
+// Color nesting
+// _______________________________________________
+@theme__color__primary: @color-black;
+@theme__color__primary-alt: darken(darkgoldenrod, 60%);
+@theme__color__secondary: @color-orange-red1;
+
+@primary__color: rgb(83, 60, 1);
+@primary__color__dark: darken(@primary__color, 35%); // #000
+@primary__color__darker: darken(@primary__color, 13.5%); // #111
+@primary__color__lighter: lighten(@primary__color, 29%); // #7d7d7d
+@primary__color__light: lighten(@primary__color, 45%); // #a6a6a6
+
+@page__background-color: @color-white;
+@panel__background-color: darken(@page__background-color, 6%);
+
+@header-icons-color: @color-yeller;
+@header-icons-color-hover: @color-yeller-lighten;
+
+@footer__background-color: black;
+
+//@minicart-icons-color: @header-icons-color;
+//@minicart-icons-color-hover: @header-icons-color-hover;
+
+@button-primary__color:black;
+@button-primary__background:@color-yeller;
+@button-primary__border: 3px solid @color-yeller;
+@button-primary__border-radius: 3px;
+
+@button-primary__hover__color: black;
+@button-primary__hover__background:@color-yeller-lighten;
+@button-primary__hover__border: 3px solid @color-yeller-lighten;
+@button-primary__hover__border-radius: 3px;
+
+@button-primary__active__color: @button-primary__hover__color;
+@button-primary__active__background: @color-yeller-orange;
+@button-primary__active__border: 3px solid @color-yeller-orange;
+@button-primary__active__border-radius: 3px;

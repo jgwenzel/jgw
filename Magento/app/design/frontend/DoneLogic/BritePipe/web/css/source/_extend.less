@@ -1,0 +1,117 @@
+
+// /**
+//  * _extend.less
+//  */
+
+@import 'lib/variables/_colors_extend.less';
+
+.bw {
+    background-color:@color-black;
+    color:@color-white;
+    font-weight:@font-weight__semibold;
+}
+
+.page-wrapper {
+    .page-header {
+        background: url("@{baseDir}images/yellow-black-stripes128.png");
+        background-repeat: repeat;
+        a.advanced {
+            color:@color-yeller;
+            text-decoration:none;
+            font-weight:@font-weight__semibold;
+            &:hover {
+            color:@color-yeller;
+            text-decoration:underline;
+            font-weight:@font-weight__semibold;
+            }
+            &:active {
+                color:@color-yeller-orange;    
+                text-decoration:none;
+                font-weight:@font-weight__semibold;    
+            }
+        }
+        .panel.wrapper {
+            .bw();
+            border: none;
+        }
+        .header {
+            ul.compare {
+                li.compare {
+                    a.compare {
+                        color:@color-yeller;
+                        text-decoration:none;
+                        font-weight:@font-weight__semibold;
+                        &:hover {
+                        color:@color-yeller;
+                        text-decoration:underline;
+                        font-weight:@font-weight__semibold;
+                        }
+                        &:active {
+                            color:@color-yeller;    
+                            text-decoration:none;
+                            font-weight:@font-weight__semibold;    
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .header.panel {
+        >.header.links {
+            >li {
+                > a {
+                    color:@color-yeller;
+                    text-decoration:none;
+                    font-weight:@font-weight__semibold;
+                    &:hover {
+                    color:@color-yeller;
+                    text-decoration:underline;
+                    font-weight:@font-weight__semibold;
+                    }
+                    &:active {
+                        color:@color-yeller-orange;    
+                        text-decoration:none;    
+                        font-weight:@font-weight__semibold;        
+                    }
+                }
+            }
+        }
+    }
+    main.page-main {
+        a.action {
+                color:@color-gray80;
+            &:hover {
+                color:@color-gray60;
+            }
+            &:active {
+                color:@color-gray80;   
+            }
+        }
+    }
+    .page-footer {
+        background: url("@{baseDir}images/yellow-black-stripes128.png");
+        background-repeat: repeat;
+        .bw();
+        .footer.content {
+            > .links {
+                li {
+                    a {
+                        color:@color-yeller;
+                        text-decoration:none;
+                        font-weight:@font-weight__semibold;
+                        &:hover {
+                        color:@color-yeller;
+                        text-decoration:underline;
+                        font-weight:@font-weight__semibold;
+                        }
+                        &:active {
+                            color:@color-yeller-orange;    
+                            text-decoration:none;
+                            font-weight:@font-weight__semibold;      
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+
+// /**
+//  * _extend.less
+//  */
+
+@import 'lib/variables/_colors_extend.less';
+
+.bw {
+    background-color:@color-black;
+    color:@color-white;
+    font-weight:bold;
+}
+
+.page-wrapper {
+    .page-header {
+        background: url("@{baseDir}images/yellow-black-stripes128.png");
+        background-repeat: repeat;
+        .bw();
+        a.advanced {
+            color:@color-yeller;
+            &:hover {
+            color:@color-yeller-darken;
+            }
+        }
+        .panel.wrapper {
+            .bw();
+            border: none;
+        }
+    }
+    .header.panel {
+        >.header.links {
+            >li {
+                > a {
+                    color:@color-yeller;
+                    &:hover {
+                    color:@color-yeller-darken;
+                    }
+                }
+            }
+        }
+    }
+    .page-footer {
+        background: url("@{baseDir}images/yellow-black-stripes128.png");
+        background-repeat: repeat;
+        .bw();
+    }
+    .footer.content {
+        >.footer.links {
+            >li {
+                > a {
+                    color:@color-yeller;
+                    &:hover {
+                    color:@color-yeller-darken;
+                    }
+                }
+            }
+        }
+    }
+}

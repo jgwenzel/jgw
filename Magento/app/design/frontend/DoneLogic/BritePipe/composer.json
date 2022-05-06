@@ -1,0 +1,19 @@
+{
+    "name": "donelogic/theme-frontend-britepipe",
+    "description": "DoneLogic BritePipe Theme",
+    "type": "magento2-theme",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "version": "100.0.2",
+    "require": {
+        "php": "~7.3.0||~7.4.0",
+        "magento/theme-frontend-luma": "100.3.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

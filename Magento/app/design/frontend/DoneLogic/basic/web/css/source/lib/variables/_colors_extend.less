@@ -1,0 +1,29 @@
+//
+//  Color variables
+//  _____________________________________________
+@color-yeller: #ffc800;
+@color-yeller-darken: darken(@color-yeller, 35%);
+
+
+//
+// Color nesting
+// _______________________________________________
+@theme__color__primary: @color-black;
+@theme__color__primary-alt: darken(darkgoldenrod, 60%);
+@theme__color__secondary: @color-orange-red1;
+
+@primary__color: rgb(83, 60, 1);
+@primary__color__dark: darken(@primary__color, 35%); // #000
+@primary__color__darker: darken(@primary__color, 13.5%); // #111
+@primary__color__lighter: lighten(@primary__color, 29%); // #7d7d7d
+@primary__color__light: lighten(@primary__color, 45%); // #a6a6a6
+
+@page__background-color: @color-white;
+@panel__background-color: darken(@page__background-color, 6%);
+
+@button-primary__color:black;
+@button-primary__background:@color-yeller;
+@button-primary__border:@color-yeller 2px solid;
+
+@button-primary__hover__background:@color-yeller-darken;
+@button-primary__hover__border:black 2px solid;
