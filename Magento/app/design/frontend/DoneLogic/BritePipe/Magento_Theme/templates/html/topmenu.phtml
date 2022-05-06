@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+
+<nav class="navigation" data-action="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <?= /* @noEscape */ $_menuHtml?>
+        <?= $block->getChildHtml() ?>
+        <li class="level0 level-top ui-menu-item">
+    <a href="<?php echo $this->getBaseUrl()."contact/"; ?>" class="level-top ui-corner-all"  role="menuitem">
+        <span><?php echo __("Contact Us")?></span>
+    </a>
+        </li>
+        <li class="level0 level-top ui-menu-item">
+    <a href="<?php echo $this->getBaseUrl()."gate/vendors/view"; ?>" class="level-top ui-corner-all"  role="menuitem">
+        <span><?php echo __("Services Directory")?></span>
+    </a>
+        </li>
+    </ul>
+</nav>
